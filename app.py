@@ -45,3 +45,9 @@ if st.button("Hacher le mot de passe"):
             st.error(f"Une erreur est survenue lors du hachage : {e}")
     else:
         st.error("Veuillez entrer un mot de passe avant de cliquer sur le bouton.")
+
+# Footer
+st.sidebar.image("streamlit_hasher/mon_logo.png", width=100)
+st.sidebar.markdown("---")
+st.sidebar.markdown("version 18.09.25")
+st.sidebar.markdown("© [multibraservices@gmail.com](https://zoomali.io/)")
