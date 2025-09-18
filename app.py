@@ -1,20 +1,27 @@
 import streamlit as st
 import bcrypt
+import base64
+from pathlib import Path
 
 st.set_page_config(page_title="Générateur de Hash", layout="centered")
+
+def img_to_bytes(img_path):
+    img_bytes = Path(img_path).read_bytes()
+    encoded = base64.b64encode(img_bytes).decode()
+    return encoded
 
 st.title("🔑 Générateur de Hash de Mot de Passe")
 
 st.write("""
 Utilisez cet outil pour générer un hash sécurisé pour un mot de passe. 
-Le hash généré utilise l'algorithme **bcrypt**, qui est la norme recommandée 
+Le hash généré utilise l'''algorithme **bcrypt**, qui est la norme recommandée 
 pour le stockage de mots de passe.
 """)
 st.info("Entrez un mot de passe ci-dessous, puis cliquez sur le bouton pour obtenir le hash correspondant.", icon="ℹ️")
 
 
 # Champ de saisie pour le mot de passe
-# L'attribut type="password" permet de masquer la saisie
+# L'''attribut type="password" permet de masquer la saisie
 password_to_hash = st.text_input("Mot de passe à hacher", type="password")
 
 # Bouton pour lancer le hachage
@@ -27,12 +34,12 @@ if st.button("Hacher le mot de passe"):
             # Génération du "sel" (salt) et hachage du mot de passe
             hashed_password = bcrypt.hashpw(password_bytes, bcrypt.gensalt())
             
-            # On décode le hash en string pour pouvoir l'afficher et le copier
+            # On décode le hash en string pour pouvoir l'''afficher et le copier
             hashed_password_str = hashed_password.decode('utf-8')
 
             st.success("Voici votre mot de passe haché :")
             
-            # st.code permet d'afficher le hash dans un bloc formaté, facile à copier
+            # st.code permet d'''afficher le hash dans un bloc formaté, facile à copier
             st.code(hashed_password_str, language="text")
 
             st.warning("""
@@ -47,7 +54,11 @@ if st.button("Hacher le mot de passe"):
         st.error("Veuillez entrer un mot de passe avant de cliquer sur le bouton.")
 
 # Footer
-st.sidebar.image("streamlit_hasher/mon_logo.png", width=100)
+st.sidebar.markdown(f'''
+<a href="https://zoomali.io/" target="_blank">
+    <img src="data:image/png;base64,{img_to_bytes("streamlit_hasher/mon_logo.png")}" width="100">
+</a>
+''', unsafe_allow_html=True)
 st.sidebar.markdown("---")
 st.sidebar.markdown("version 18.09.25")
 st.sidebar.markdown("© [multibraservices@gmail.com](https://zoomali.io/)")
