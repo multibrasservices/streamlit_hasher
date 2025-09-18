@@ -2,7 +2,7 @@
 
 Cette application web, construite avec Streamlit, permet de calculer le hachage de textes ou de fichiers en utilisant une variété d'algorithmes de hachage.
 
-[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://votre-lien-vers-l-app-streamlit.streamlit.app) <-- *Pensez à mettre à jour ce lien !*
+[![Streamlit App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)(https://hashage-pass.streamlit.app/) 
 
 ## Description
 
